@@ -30,7 +30,30 @@
 		tileSize: 512,
 		zoomOffset: -1
 	}).addTo(mymap);
+L.marker([51.5, -0.09]).addTo(mymap)
+		.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
 
+	L.circle([50.7755555, 6.083611], 500, {
+		color: 'red',
+		fillColor: '#f03',
+		fillOpacity: 0.5
+	}).addTo(mymap).bindPopup("I am a circle.");
+
+	L.polygon([
+		[50.7755555, 6.0837],
+		[50.7755555, 6.083611],
+		[50.7755555, 6.0834]
+	]).addTo(mymap).bindPopup("I am a polygon.");
+
+
+	var popup = L.popup();
+
+	function onMapClick(e) {
+		popup
+			.setLatLng(e.latlng)
+			.setContent("You clicked the map at " + e.latlng.toString())
+			.openOn(mymap);
+	}
 
 
 	mymap.on('click', onMapClick);
